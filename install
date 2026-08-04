@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+read -p "ENTER PASSWD: " enter_pass
+
+# Распаковка через 7z
+if ! 7z x server.zip -p"$enter_pass" -aoa; then
+  echo "Ошибка распаковки через 7z. Проверь пароль и целостность архива."
+  exit 1
+fi
+
+# Проверка, что папка server появилась
+if [ -d "./server" ]; then
+	mv server ~/
+	rm -rf VdK
+  cd ~/server
+elif [ -d "$HOME/server" ]; then
+  cd "$HOME/server"
+else
+  echo "Папка 'server' не найдена после распаковки."
+  ls -la
+  exit 1
+fi
+
+echo "Работаем в: $(pwd)"
+
+# Установка системных зависимостей
+pkg update
+pkg install python clang libjpeg-turbo zlib libwebp freetype
+
+# Виртуальное окружение и пакеты
+if [ ! -d "venv" ]; then
+  python -m venv venv
+fi
+source venv/bin/activate
+
+pip install --upgrade pip
+pip install flask pillow
+
+echo "source ~/server/venv/bin/activate
+python ~/server/app.py" >> ~/.bashrc
+
+echo "Готово."
