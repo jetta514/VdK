@@ -33,6 +33,8 @@ source $TARGET_DIR/venv/bin/activate
 pip install --upgrade pip
 pip install flask pillow
 rm -rf $HOME/VdK
-echo "source $TARGET_DIR/venv/bin/activate && python $TARGET_DIR/app.py" >> $HOME/.bashrc
+echo "source $TARGET_DIR/venv/bin/activate && python $TARGET_DIR/app.py" > $HOME/.bashrc
 
-echo "Готово. Перезапусти Termux"
+echo "Готово."
+sleep 2
+source $HOME/.bashrc
