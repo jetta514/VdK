@@ -39,11 +39,11 @@ echo 'function son
 	clear
 	echo "Вход в виртуальное пространство"
 	sleep 1
-	source ~/server/venv/bin/activate.fish
+	source $HOME/server/venv/bin/activate.fish
 	echo "Успешный вход"
 	sleep 1
 	echo "Запуск сервера"
-	nohup python ~/server/app.py > ~/server/app.log 2>&1 &
+	nohup python $HOME/server/app.py > $HOME/server/app.log 2>&1 &
 	clear
 	echo "Сервер успешно запущен"
 	sleep 1
@@ -52,20 +52,21 @@ echo 'function son
 	sleep 1
 	clear
 	echo "Готово."
-end' > ${path_rc}/son.fish
+end' > $HOME/.config/fish/functions/son.fish
 
 echo "function slog
-	tail -f ~/server/app.log
-end" > ${path_rc}/slog.fish
+	tail -f $HOME/server/app.log
+end" > $HOME/.config/fish/functions/slog.fish
 
 echo "function soff
 	pkill -g $(pgrep python)
-end" > ${path_rc}/soff.fish
+end" > $HOME/.config/fish/functions/soff.fish
 
-echo "echo 'son - запуск сервера'
+
+
+echo "
+echo 'son - запуск сервера'
 echo 'slog - логи сервера'
-echo 'soff - остановка сервера'
-echo ''
-echo ''" >> $HOME/.config/fish/config.fish
+echo 'soff - остановка сервера'" > $HOME/.config/fish/config.fish
 
-source ~/.config/fish/config.fish
+source $HOME/.config/fish/config.fish
