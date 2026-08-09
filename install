@@ -27,12 +27,12 @@ pkg install python clang libjpeg-turbo zlib libwebp freetype -y
 if [ ! -d "venv" ]; then
   python -m venv venv
 fi
-source $TARGET_DIR/venv/bin/activate
+source ~/server/venv/bin/activate
 
 pip install --upgrade pip
 pip install flask pillow
 #rm -rf $HOME/VdK
-
+deactivate
 path_rc="$HOME/.config/fish/functions"
 
 echo 'function son
@@ -62,8 +62,10 @@ echo "function soff
 	pkill -g $(pgrep python)
 end" > ${path_rc}/soff.fish
 
-echo "son - запуск сервера
-slog - логи сервера
-soff - остановка сервера" >> $HOME/.config/fish/config.fish
+echo "echo 'son - запуск сервера'
+echo 'slog - логи сервера'
+echo 'soff - остановка сервера'
+echo ''
+echo ''" >> $HOME/.config/fish/config.fish
 
 source ~/.config/fish/config.fish
