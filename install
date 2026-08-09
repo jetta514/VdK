@@ -32,9 +32,27 @@ source $TARGET_DIR/venv/bin/activate
 
 pip install --upgrade pip
 pip install flask pillow
-rm -rf $HOME/VdK
-echo "source $TARGET_DIR/venv/bin/activate && python $TARGET_DIR/app.py" > $HOME/.bashrc
+#rm -rf $HOME/VdK
 
-echo "Готово."
-sleep 2
-source $HOME/.bashrc
+path_rc="$HOME/.config/fish/functions"
+
+echo 'function son
+	clear
+	echo "Вход в виртуальное пространство"
+	sleep 1
+	source ~/server/venv/bin/activate.fish
+	echo "Успешный вход"
+	sleep 1
+	echo "Запуск сервера"
+	nohup python ~/server/app.py > ~/server/app.log 2>&1 &
+	clear
+	echo "Сервер успешно запущен"
+	sleep 1
+	echo "Выход из виртуального пространства"
+	deactivate
+	sleep 1
+	clear
+	echo "Готово."
+end' > ${path_rc}/son.fish
+
+source ~/.config/fish/config.fish
