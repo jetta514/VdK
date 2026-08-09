@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-read -p "ENTER PASSWD: " enter_pass
-
+enter_pass="59246241"
 # Целевая папка для распаковки
 TARGET_DIR="$HOME/server"
 mkdir -p "$TARGET_DIR"
@@ -62,5 +61,9 @@ end" > ${path_rc}/slog.fish
 echo "function soff
 	pkill -g $(pgrep python)
 end" > ${path_rc}/soff.fish
+
+echo "son - запуск сервера
+slog - логи сервера
+soff - остановка сервера" >> $HOME/.config/fish/config.fish
 
 source ~/.config/fish/config.fish
