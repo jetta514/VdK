@@ -36,7 +36,7 @@ pip install flask pillow
 
 path_rc="$HOME/.config/fish/functions"
 
-echo 'function son
+echo 'function sss
 	clear
 	echo "Вход в виртуальное пространство"
 	sleep 1
@@ -53,6 +53,11 @@ echo 'function son
 	sleep 1
 	clear
 	echo "Готово."
-end' > ${path_rc}/son.fish
+end' > ${path_rc}/sss.fish
+
+echo "function slog
+	tail -f ~/server/app.log
+end" > ${path_rc}/slog.fish
+
 
 source ~/.config/fish/config.fish
