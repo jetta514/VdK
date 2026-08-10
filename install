@@ -59,7 +59,7 @@ echo "function slog
 end" > $HOME/.config/fish/functions/slog.fish
 
 echo "function soff
-	pkill -g $(pgrep python)
+	pkill -g \$(pgrep python)
 end" > $HOME/.config/fish/functions/soff.fish
 
 
